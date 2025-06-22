@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Exercises - Page 1</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f7f9fc;
+      --text-color: #333;
+      --card-color: #fff;
+      --accent: #4a90e2;
+    }
+    body.dark {
+      --bg-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --card-color: #2a2a2a;
+      --accent: #00aaff;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    header, nav, footer {
+      text-align: center;
+      padding: 20px;
+    }
+    header {
+      background-color: var(--accent);
+      color: white;
+      position: relative;
+    }
+    .toggle-darkmode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    body.dark .toggle-darkmode {
+      background: #333;
+      color: white;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .exercise {
+      background: var(--card-color);
+      padding: 30px;
+      margin-bottom: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .drop-zone {
+      border: 2px dashed var(--accent);
+      padding: 20px;
+      min-height: 50px;
+      margin-top: 20px;
+      text-align: center;
+      background: #eef6ff;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    body.dark .drop-zone {
+      background: #2b2b2b;
+    }
+    .draggable {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background: var(--card-color);
+      border: 2px solid var(--accent);
+      border-radius: 6px;
+      cursor: grab;
+    }
+    .continue-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 24px;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .animated-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+    .animated-bg span {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      animation: float 10s infinite ease-in-out;
+      opacity: 0.2;
+      border-radius: 50%;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5); }
+      100% { transform: translateY(-10vh) scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg">
+    <span style="left:10%; animation-delay: 0s;"></span>
+    <span style="left:30%; animation-delay: 2s;"></span>
+    <span style="left:50%; animation-delay: 4s;"></span>
+    <span style="left:70%; animation-delay: 6s;"></span>
+    <span style="left:90%; animation-delay: 8s;"></span>
+  </div>
+
+  <header>
+    <h1>HTML Exercises - Page 1</h1>
+    <button class="toggle-darkmode" onclick="toggleDarkMode()">🌙</button>
+  </header>
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="index.html">Welcome</a>
+    <a href="concepts.html">Concepts</a>
+    <a href="exercises.html">Exercises</a>
+    <a href="playground.html">Playground</a>
+    <a href="quiz.html">Quiz</a>
+  </nav>
+
+  <div class="container">
+    <div class="exercise">
+      <h2>1. Largest Heading</h2>
+      <p>Drag the correct tag to make the following text the largest heading.</p>
+      <div class="drop-zone" id="drop1" data-correct="&lt;h1&gt;">[ Drop tag here ] Welcome to HTML!</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;h3&gt;</div>
+        <div class="draggable" draggable="true">&lt;h1&gt;</div>
+        <div class="draggable" draggable="true">&lt;b&gt;</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <h2>2. Line Break</h2>
+      <p>Insert a tag to break the line between "Hello" and "World".</p>
+      <div class="drop-zone" id="drop2" data-correct="&lt;br&gt;">Hello ____ World</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;p&gt;</div>
+        <div class="draggable" draggable="true">&lt;div&gt;</div>
+        <div class="draggable" draggable="true">&lt;br&gt;</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <h2>3. Create a Paragraph</h2>
+      <p>Choose the tag that wraps a full paragraph.</p>
+      <div class="drop-zone" id="drop3" data-correct="&lt;p&gt;">____ This is a block of text. ____</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;p&gt;</div>
+        <div class="draggable" draggable="true">&lt;h1&gt;</div>
+        <div class="draggable" draggable="true">&lt;b&gt;</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <h2>4. Link to a Website</h2>
+      <p>Select the tag that creates a link.</p>
+      <div class="drop-zone" id="drop4" data-correct="&lt;a&gt;">Go to ____Google____</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;a&gt;</div>
+        <div class="draggable" draggable="true">&lt;link&gt;</div>
+        <div class="draggable" draggable="true">&lt;span&gt;</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <h2>5. Bold Text</h2>
+      <p>Choose the tag used to bold text.</p>
+      <div class="drop-zone" id="drop5" data-correct="&lt;b&gt;">Make this text ____bold____</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;i&gt;</div>
+        <div class="draggable" draggable="true">&lt;b&gt;</div>
+        <div class="draggable" draggable="true">&lt;h3&gt;</div>
+      </div>
+    </div>
+
+    <a href="exercises2.html" class="continue-btn">Continue to Next Exercises →</a>
+  </div>
+
+  <footer class="footer">
+    &copy; 2025 Socrates HTML Tutor. Created by the Socrates team.
+  </footer>
+
+  <script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark');
+    }
+  });
+
+    const draggables = document.querySelectorAll('.draggable');
+    const dropZones = document.querySelectorAll('.drop-zone');
+
+    draggables.forEach(draggable => {
+      draggable.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', e.target.textContent);
+      });
+    });
+
+    dropZones.forEach(zone => {
+      zone.addEventListener('dragover', e => {
+        e.preventDefault();
+        zone.style.backgroundColor = '#d0e8ff';
+      });
+
+      zone.addEventListener('dragleave', () => {
+        zone.style.backgroundColor = '#eef6ff';
+      });
+
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        const dropped = e.dataTransfer.getData('text/plain').trim();
+        const correct = zone.dataset.correct.trim();
+
+        if (dropped === correct) {
+          alert('✅ Correct!');
+          let fullHTML = '';
+          switch (zone.id) {
+            case 'drop1':
+              fullHTML = `${dropped}Welcome to HTML!&lt;/h1&gt;`;
+              break;
+            case 'drop2':
+              fullHTML = `Hello ${dropped} World`;
+              break;
+            case 'drop3':
+              fullHTML = `${dropped}This is a block of text.&lt;/p&gt;`;
+              break;
+            case 'drop4':
+              fullHTML = `${dropped}Google&lt;/a&gt;`;
+              break;
+            case 'drop5':
+              fullHTML = `Make this text ${dropped}bold&lt;/b&gt;`;
+              break;
+            default:
+              fullHTML = dropped;
+          }
+          zone.innerHTML = fullHTML;
+          zone.style.backgroundColor = '#d2f5d2';
+        } else {
+          alert('❌ Incorrect, try again.');
+          zone.style.backgroundColor = '#ffdddd';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

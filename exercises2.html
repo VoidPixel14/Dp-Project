@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Exercises - Page 2</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f7f9fc;
+      --text-color: #222;
+      --card-color: #fff;
+      --accent: #4a90e2;
+    }
+    body.dark {
+      --bg-color: #1b1b1b;
+      --text-color: #eee;
+      --card-color: #2b2b2b;
+      --accent: #00aaff;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header, nav, footer {
+      text-align: center;
+      padding: 20px;
+    }
+    header {
+      background-color: var(--accent);
+      color: white;
+      position: relative;
+    }
+    .toggle-darkmode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    body.dark .toggle-darkmode {
+      background: #333;
+      color: white;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .exercise {
+      background: var(--card-color);
+      padding: 30px;
+      margin-bottom: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .drop-zone {
+      border: 2px dashed var(--accent);
+      padding: 20px;
+      min-height: 50px;
+      margin-top: 20px;
+      text-align: center;
+      background: #eef6ff;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    body.dark .drop-zone {
+      background: #2b2b2b;
+    }
+
+    .draggable {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background: var(--card-color);
+      border: 2px solid var(--accent);
+      border-radius: 6px;
+      cursor: grab;
+    }
+
+    .continue-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 24px;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .animated-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+    .animated-bg span {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      animation: float 10s infinite ease-in-out;
+      opacity: 0.2;
+      border-radius: 50%;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5); }
+      100% { transform: translateY(-10vh) scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg">
+    <span style="left:10%; animation-delay: 0s;"></span>
+    <span style="left:30%; animation-delay: 2s;"></span>
+    <span style="left:50%; animation-delay: 4s;"></span>
+    <span style="left:70%; animation-delay: 6s;"></span>
+    <span style="left:90%; animation-delay: 8s;"></span>
+  </div>
+
+  <header>
+    <h1>HTML Exercises - Page 2</h1>
+    <button class="toggle-darkmode" onclick="toggleDarkMode()">🌙</button>
+  </header>
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="index.html">Welcome</a>
+    <a href="concepts.html">Concepts</a>
+    <a href="exercises.html">Exercises</a>
+    <a href="playground.html">Playground</a>
+    <a href="quiz.html">Quiz</a>
+  </nav>
+
+  <div class="container">
+    <div class="exercise">
+      <h2>6. Italic Text</h2>
+      <p>Select the tag used to italicize text.</p>
+      <div class="drop-zone" id="drop6" data-correct="&lt;i&gt;">Make this text ____italic____</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;i&gt;</div>
+        <div class="draggable" draggable="true">&lt;b&gt;</div>
+        <div class="draggable" draggable="true">&lt;em&gt;</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <h2>7. Input Field</h2>
+      <p>Choose the tag that creates an input field.</p>
+      <div class="drop-zone" id="drop7" data-correct="&lt;input&gt;">Your name: ____</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;input&gt;</div>
+        <div class="draggable" draggable="true">&lt;text&gt;</div>
+        <div class="draggable" draggable="true">&lt;form&gt;</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <h2>8. Image Tag</h2>
+      <p>Select the tag used to display images.</p>
+      <div class="drop-zone" id="drop8" data-correct="&lt;img&gt;">Show this picture: ____</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;img&gt;</div>
+        <div class="draggable" draggable="true">&lt;src&gt;</div>
+        <div class="draggable" draggable="true">&lt;image&gt;</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <h2>9. Form Tag</h2>
+      <p>Select the tag used to create a form container.</p>
+      <div class="drop-zone" id="drop9" data-correct="&lt;form&gt;">Begin form with ____</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;form&gt;</div>
+        <div class="draggable" draggable="true">&lt;input&gt;</div>
+        <div class="draggable" draggable="true">&lt;submit&gt;</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <h2>10. Submit Button</h2>
+      <p>Select the tag that creates a submit button.</p>
+      <div class="drop-zone" id="drop10" data-correct="&lt;button&gt;">____ Submit ____</div>
+      <div>
+        <div class="draggable" draggable="true">&lt;submit&gt;</div>
+        <div class="draggable" draggable="true">&lt;input&gt;</div>
+        <div class="draggable" draggable="true">&lt;button&gt;</div>
+      </div>
+    </div>
+
+    <a href="exercises3.html" class="continue-btn">Continue to Next Exercises →</a>
+  </div>
+
+  <footer class="footer">
+    &copy; 2025 Socrates HTML Tutor. Created by the Socrates team.
+  </footer>
+
+  <script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark');
+    }
+  });
+
+    const draggables = document.querySelectorAll('.draggable');
+    const dropZones = document.querySelectorAll('.drop-zone');
+
+    draggables.forEach(draggable => {
+      draggable.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', e.target.textContent);
+      });
+    });
+
+    dropZones.forEach(zone => {
+      zone.addEventListener('dragover', e => {
+        e.preventDefault();
+        zone.style.backgroundColor = '#d0e8ff';
+      });
+
+      zone.addEventListener('dragleave', () => {
+        zone.style.backgroundColor = '#eef6ff';
+      });
+
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        const dropped = e.dataTransfer.getData('text/plain').trim();
+        const correct = zone.dataset.correct.trim();
+
+        if (dropped === correct) {
+          alert('✅ Correct!');
+          let fullHTML = '';
+          switch (zone.id) {
+            case 'drop6':
+              fullHTML = `Make this text ${dropped}italic&lt;/i&gt;`;
+              break;
+            case 'drop7':
+              fullHTML = `Your name: ${dropped}`;
+              break;
+            case 'drop8':
+              fullHTML = `Show this picture: ${dropped}`;
+              break;
+            case 'drop9':
+              fullHTML = `Begin form with ${dropped}`;
+              break;
+            case 'drop10':
+              fullHTML = `${dropped}Submit&lt;/button&gt;`;
+              break;
+            default:
+              fullHTML = dropped;
+          }
+          zone.innerHTML = fullHTML;
+          zone.style.backgroundColor = '#d2f5d2';
+        } else {
+          alert('❌ Incorrect, try again.');
+          zone.style.backgroundColor = '#ffdddd';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

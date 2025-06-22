@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Concepts</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f4f7fa;
+      --text-color: #333;
+      --card-color: #fff;
+      --accent: #4a90e2;
+    }
+    body.dark {
+      --bg-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --card-color: #2a2a2a;
+      --accent: #00aaff;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+    header, nav, footer {
+      text-align: center;
+      padding: 20px;
+    }
+    header {
+      background-color: var(--accent);
+      color: white;
+      position: relative;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .toggle-darkmode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    body.dark .toggle-darkmode {
+      background: #333;
+      color: white;
+    }
+    .category {
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .category h2 {
+      color: var(--text-color);
+      margin-bottom: 20px;
+      text-align: left;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .concept {
+      background: var(--card-color);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s forwards;
+    }
+    .concept:nth-child(even) { animation-delay: 0.1s; }
+    .concept:nth-child(odd) { animation-delay: 0.2s; }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .concept:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .concept-title {
+      font-size: 1.4em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .concept i { color: var(--accent); }
+    .concept-description {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-top: 0;
+      color: var(--text-color);
+      transition: all 0.5s ease;
+    }
+    .concept.active .concept-description {
+      margin-top: 10px;
+      opacity: 1;
+      max-height: 300px;
+      animation: slideDown 0.5s ease forwards;
+    }
+    @keyframes slideDown {
+      from { transform: scaleY(0.8); }
+      to { transform: scaleY(1); }
+    }
+    footer {
+      color: var(--text-color);
+    }
+    .animated-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+    .animated-bg span {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      animation: float 10s infinite ease-in-out;
+      opacity: 0.2;
+      border-radius: 50%;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5); }
+      100% { transform: translateY(-10vh) scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg">
+    <span style="left:10%; animation-delay: 0s;"></span>
+    <span style="left:30%; animation-delay: 2s;"></span>
+    <span style="left:50%; animation-delay: 4s;"></span>
+    <span style="left:70%; animation-delay: 6s;"></span>
+    <span style="left:90%; animation-delay: 8s;"></span>
+  </div>
+  <header>
+    <h1>HTML Concepts</h1>
+    <button class="toggle-darkmode" onclick="toggleDarkMode()">🌙</button>
+  </header>
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="index.html">Welcome</a>
+    <a href="concepts.html">Concepts</a>
+    <a href="exercises.html">Exercises</a>
+    <a href="playground.html">Playground</a>
+    <a href="quiz.html">Quiz</a>
+  </nav>
+
+  <div class="category">
+    <h2>Structure Tags</h2>
+    <div class="grid-container">
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-heading"></i> &lt;h1&gt;</div>
+        <div class="concept-description">Defines a top-level heading. Use &lt;h1&gt; to &lt;h6&gt; for headings of different importance.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-paragraph"></i> &lt;p&gt;</div>
+        <div class="concept-description">Defines a paragraph. Automatically creates spacing before and after the text.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-arrow-down"></i> &lt;br&gt;</div>
+        <div class="concept-description">Inserts a single line break. Commonly used in addresses and poems.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-list"></i> &lt;ul&gt;</div>
+        <div class="concept-description">Creates an unordered (bulleted) list. Use &lt;li&gt; for each list item.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-list-ol"></i> &lt;ol&gt;</div>
+        <div class="concept-description">Creates an ordered (numbered) list. Used for sequences and steps.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Form Elements</h2>
+    <div class="grid-container">
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-file-alt"></i> &lt;form&gt;</div>
+        <div class="concept-description">Defines a form for user input. Contains input elements like text fields and buttons.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-keyboard"></i> &lt;input&gt;</div>
+        <div class="concept-description">Defines an input field where users can type data.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-check-square"></i> &lt;button&gt;</div>
+        <div class="concept-description">Represents a clickable button used to submit forms or trigger actions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Media and Links</h2>
+    <div class="grid-container">
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-link"></i> &lt;a&gt;</div>
+        <div class="concept-description">Creates a hyperlink. Use the href attribute to define the link destination.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-image"></i> &lt;img&gt;</div>
+        <div class="concept-description">Embeds an image into the page. Requires src and alt attributes.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-video"></i> &lt;video&gt;</div>
+        <div class="concept-description">Used to embed video content with optional controls.</div>
+      </div>
+    </div>
+  </div>
+
+    <div class="category">
+    <h2>Text and Formatting</h2>
+    <div class="grid-container">
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-bold"></i> &lt;b&gt;</div>
+        <div class="concept-description">Makes text bold without implying importance.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-italic"></i> &lt;i&gt;</div>
+        <div class="concept-description">Italicizes text, often for alternate voice or mood.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-highlighter"></i> &lt;mark&gt;</div>
+        <div class="concept-description">Highlights text with a yellow background.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-strikethrough"></i> &lt;del&gt;</div>
+        <div class="concept-description">Represents deleted text, typically shown with a line through it.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-underline"></i> &lt;u&gt;</div>
+        <div class="concept-description">Underlines text.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-code"></i> &lt;code&gt;</div>
+        <div class="concept-description">Displays text in a monospaced font, used for code snippets.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Table Elements</h2>
+    <div class="grid-container">
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-table"></i> &lt;table&gt;</div>
+        <div class="concept-description">Defines a table to organize data in rows and columns.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-columns"></i> &lt;tr&gt;</div>
+        <div class="concept-description">Represents a table row.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-th"></i> &lt;th&gt;</div>
+        <div class="concept-description">Defines a header cell in a table.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-ellipsis-v"></i> &lt;td&gt;</div>
+        <div class="concept-description">Defines a standard data cell in a table.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Semantic Elements</h2>
+    <div class="grid-container">
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-layer-group"></i> &lt;section&gt;</div>
+        <div class="concept-description">Defines a thematic grouping of content, typically with a heading.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-align-left"></i> &lt;article&gt;</div>
+        <div class="concept-description">Defines self-contained content that could be independently distributed.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-plus-square"></i> &lt;aside&gt;</div>
+        <div class="concept-description">Defines content aside from the main content, like sidebars or callouts.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-bookmark"></i> &lt;nav&gt;</div>
+        <div class="concept-description">Defines a section with navigation links.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Meta and Head Tags</h2>
+    <div class="grid-container">
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-info-circle"></i> &lt;meta&gt;</div>
+        <div class="concept-description">Provides metadata about the document, like character encoding and description.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-title"></i> &lt;title&gt;</div>
+        <div class="concept-description">Defines the title of the document shown in the browser tab.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-font"></i> &lt;link&gt;</div>
+        <div class="concept-description">Links external resources like stylesheets.</div>
+      </div>
+      <div class="concept" onclick="toggleInfo(this)">
+        <div class="concept-title"><i class="fas fa-sitemap"></i> &lt;style&gt;</div>
+        <div class="concept-description">Embeds CSS styles inside the document head.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    &copy; 2025 Socrates HTML Tutor. Created by the Socrates team.
+  </footer>
+
+  <script>
+    function toggleInfo(element) {
+      element.classList.toggle('active');
+    }
+    function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark');
+    }
+  });
+  </script>
+</body>
+</html>

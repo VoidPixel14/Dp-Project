@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Quiz</title>
+  <style>
+    :root {
+      --bg-light: #f7f9fc;
+      --bg-dark: #0e1015;
+      --text-light: #333;
+      --text-dark: #eee;
+      --primary: #4a90e2;
+      --panel-bg-light: #fff;
+      --panel-bg-dark: #1e1f26;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.3s, color 0.3s;
+    }
+    html[data-theme='dark'] body {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    header, nav, footer {
+      text-align: center;
+      padding: 20px;
+    }
+    header {
+      background-color: var(--primary);
+      color: white;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .quiz-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: var(--panel-bg-light);
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    html[data-theme='dark'] .quiz-container {
+      background: var(--panel-bg-dark);
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    .question h3 {
+      margin-bottom: 10px;
+    }
+    .question label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .submit-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 24px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      text-align: center;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+    .timer {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      color: crimson;
+    }
+    .toggle-theme {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-theme" onclick="toggleTheme()">Toggle Dark Mode</button>
+  <header>
+    <h1>HTML Quiz</h1>
+  </header>
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="index.html">Welcome</a>
+    <a href="concepts.html">Concepts</a>
+    <a href="exercises.html">Exercises</a>
+    <a href="playground.html">Playground</a>
+    <a href="quiz.html">Quiz</a>
+  </nav>
+
+  <div class="quiz-container">
+    <div class="timer" id="timer">Time left: 45s</div>
+    <form id="quizForm">
+<!-- Question Template: Copy/Paste this block to add more questions -->
+    <div class="question">
+      <h3>1. What does HTML stand for?</h3>
+      <label><input type="radio" name="q1" value="a"> Hyper Text Markup Language</label>
+      <label><input type="radio" name="q1" value="b"> High Tech Modern Language</label>
+      <label><input type="radio" name="q1" value="c"> Hyperlink Text Manipulation Language</label>
+    </div>
+
+    <div class="question">
+      <h3>2. True or False: The &lt;br&gt; tag is used to create a line break.</h3>
+      <label><input type="radio" name="q2" value="true"> True</label>
+      <label><input type="radio" name="q2" value="false"> False</label>
+    </div>
+
+    <div class="question">
+      <h3>3. Which tag is used to define an image?</h3>
+      <label><input type="radio" name="q3" value="a"> &lt;pic&gt;</label>
+      <label><input type="radio" name="q3" value="b"> &lt;image&gt;</label>
+      <label><input type="radio" name="q3" value="c"> &lt;img&gt;</label>
+    </div>
+
+    <div class="question">
+      <h3>4. True or False: &lt;a&gt; is used to create links.</h3>
+      <label><input type="radio" name="q4" value="true"> True</label>
+      <label><input type="radio" name="q4" value="false"> False</label>
+    </div>
+
+    <div class="question">
+      <h3>5. Which tag is used to make text bold?</h3>
+      <label><input type="radio" name="q5" value="a"> &lt;bold&gt;</label>
+      <label><input type="radio" name="q5" value="b"> &lt;strong&gt;</label>
+      <label><input type="radio" name="q5" value="c"> &lt;thick&gt;</label>
+    </div>
+
+    <div class="question">
+      <h3>6. What is the correct tag for the largest heading?</h3>
+      <label><input type="radio" name="q6" value="a"> &lt;head&gt;</label>
+      <label><input type="radio" name="q6" value="b"> &lt;h6&gt;</label>
+      <label><input type="radio" name="q6" value="c"> &lt;h1&gt;</label>
+    </div>
+
+    <div class="question">
+      <h3>7. True or False: &lt;ul&gt; creates a numbered list.</h3>
+      <label><input type="radio" name="q7" value="true"> True</label>
+      <label><input type="radio" name="q7" value="false"> False</label>
+    </div>
+
+    <div class="question">
+      <h3>8. What tag is used to insert a horizontal line?</h3>
+      <label><input type="radio" name="q8" value="a"> &lt;line&gt;</label>
+      <label><input type="radio" name="q8" value="b"> &lt;hr&gt;</label>
+      <label><input type="radio" name="q8" value="c"> &lt;rule&gt;</label>
+    </div>
+
+    <div class="question">
+      <h3>9. Which tag defines a table row?</h3>
+      <label><input type="radio" name="q9" value="a"> &lt;td&gt;</label>
+      <label><input type="radio" name="q9" value="b"> &lt;tr&gt;</label>
+      <label><input type="radio" name="q9" value="c"> &lt;table&gt;</label>
+    </div>
+
+    <div class="question">
+      <h3>10. True or False: &lt;meta&gt; provides metadata about a web page.</h3>
+      <label><input type="radio" name="q10" value="true"> True</label>
+      <label><input type="radio" name="q10" value="false"> False</label>
+    </div>
+
+    <div class="question">
+      <h3>11. What tag would you use for emphasized text?</h3>
+      <label><input type="radio" name="q11" value="a"> &lt;i&gt;</label>
+      <label><input type="radio" name="q11" value="b"> &lt;em&gt;</label>
+      <label><input type="radio" name="q11" value="c"> &lt;b&gt;</label>
+    </div>
+
+    <div class="question">
+      <h3>12. Which HTML tag contains the content seen in the browser window?</h3>
+      <label><input type="radio" name="q12" value="a"> &lt;body&gt;</label>
+      <label><input type="radio" name="q12" value="b"> &lt;title&gt;</label>
+      <label><input type="radio" name="q12" value="c"> &lt;head&gt;</label>
+    </div>
+
+    <div class="question">
+      <h3>13. True or False: The &lt;div&gt; tag is a block-level container.</h3>
+      <label><input type="radio" name="q13" value="true"> True</label>
+      <label><input type="radio" name="q13" value="false"> False</label>
+    </div>
+
+    <div class="question">
+      <h3>14. Which tag is used to create a list item?</h3>
+      <label><input type="radio" name="q14" value="a"> &lt;li&gt;</label>
+      <label><input type="radio" name="q14" value="b"> &lt;list&gt;</label>
+      <label><input type="radio" name="q14" value="c"> &lt;item&gt;</label>
+    </div>
+
+    <div class="question">
+      <h3>15. What tag defines a clickable button?</h3>
+      <label><input type="radio" name="q15" value="a"> &lt;click&gt;</label>
+      <label><input type="radio" name="q15" value="b"> &lt;btn&gt;</label>
+      <label><input type="radio" name="q15" value="c"> &lt;button&gt;</label>
+    </div>
+
+      <button type="button" class="submit-btn" onclick="gradeQuiz()">Submit Quiz</button>
+      <div class="result" id="result"></div>
+    </form>
+  </div>
+
+  <footer class="footer">
+    &copy; 2025 Socrates HTML Tutor. Created by the Socrates team.
+  </footer>
+
+  <script>
+    const answers = {
+      q1: 'a', q2: 'true', q3: 'c', q4: 'true', q5: 'b',
+      q6: 'c', q7: 'false', q8: 'b', q9: 'b', q10: 'true',
+      q11: 'b', q12: 'a', q13: 'true', q14: 'a', q15: 'c'
+    };
+
+    let timer = 45;
+    const timerDisplay = document.getElementById("timer");
+    const quizForm = document.getElementById("quizForm");
+    const resultDiv = document.getElementById("result");
+
+    function updateTimer() {
+      timer--;
+      timerDisplay.textContent = `Time left: ${timer}s`;
+      if (timer <= 0) {
+        clearInterval(countdown);
+        gradeQuiz();
+        disableForm();
+      }
+    }
+
+    function disableForm() {
+      const inputs = quizForm.querySelectorAll("input, button");
+      inputs.forEach(el => el.disabled = true);
+      resultDiv.innerHTML += '<br><small>Reload the page to try again.</small>';
+    }
+
+    function gradeQuiz() {
+      let score = 0;
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+      localStorage.setItem("quizScore", score);
+      resultDiv.textContent = `You scored ${score} out of ${Object.keys(answers).length}`;
+    }
+
+    let countdown = setInterval(updateTimer, 1000);
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const newTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = newTheme;
+      localStorage.setItem('theme', newTheme);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    });
+  </script>
+</body>
+</html>
