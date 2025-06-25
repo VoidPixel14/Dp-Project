@@ -249,11 +249,11 @@
         case 'profile':
           const profiles = [
             { name: "Ayomide Kareem", gender: "male" },
-            { name: "Morire", gender: "female" },
+            { name: "Morire", gender: "male" },
             { name: "Dua", gender: "female" },
             { name: "Joseph", gender: "male" },
             { name: "Akpomo", gender: "male" },
-            { name: "Folashayo", gender: "female" }
+            { name: "Folashayo", gender: "male" }
           ];
           const randomProfile = profiles[Math.floor(Math.random() * profiles.length)];
           const imgId = randomProfile.gender === 'female'
@@ -276,7 +276,6 @@
 }
 </style>
 <div class="card">
-  <img src="https://i.pravatar.cc/100?" alt="Avatar">
   <h2>${randomProfile.name}</h2>
   <p>Frontend Developer</p>
 </div>`;
